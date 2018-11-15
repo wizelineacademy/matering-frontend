@@ -1,13 +1,738 @@
-// This should be imported by the main.js file
+@import "spinner";
 
-// test for scss variables
-$primary-color: #2a3fbb;
+$blue1-color: #3D4F9F;
+$blue2-color: #3A79FF;
+$blue3-color: #5E81FE;
+$blue4-color: #697CA6;
+$blue5-color: #8D96BD;
+$blue6-color: #D2E1FF;
+$gray1-color: #D6DAE5;
+$gray2-color: #F5F8FF;
+$border-color: #D8E3FE;
 
-* {
-  padding: 0;
-  margin: 0;
+@function pxToRem($px) {
+  $remSize: $px / 16;
+  @return #{$remSize}rem;
 }
 
-h1 {
-  color: $primary-color;
+@mixin mediaTablet {
+  @media (max-width: 900px) {
+    @content;
+  }
+}
+
+@mixin mediaMobile {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
+
+@mixin mediaMobileSmall {
+  @media (max-width: 500px) {
+    @content;
+  }
+}
+
+@mixin removeButtonStyles {
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+
+html {
+  font-family: 'Quicksand', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.top-bar {
+  background: white;
+  border-bottom: 1px solid $border-color;
+  height: pxToRem(80);
+  left: 0;
+  padding: 0 pxToRem(20);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  &__inner-container {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    margin: auto;
+    max-width: pxToRem(1200);
+  }
+
+  &__image {
+    margin-right: pxToRem(20);
+  }
+
+  &__link-group {
+    align-items: center;
+    display: flex;
+
+    &:first-of-type {
+      margin-right: auto;
+      @include mediaMobile {
+        display: none;
+      }
+    }
+
+    &:last-of-type {
+      @include mediaTablet {
+        display: none;
+      }
+    }
+  }
+
+  &__link {
+    color: $blue4-color;
+    cursor: pointer;
+    fill: currentColor;
+    font-size: .75rem;
+    font-weight: 500;
+    padding: pxToRem(20);
+    text-shadow: 0 0 5px #E6E6E6;
+
+    &:hover {
+      color: $blue3-color;
+    }
+  }
+
+  &__button {
+    @include removeButtonStyles;
+    background-color: $blue6-color;
+    border-radius: 2px;
+    color: $blue2-color;
+    cursor: pointer;
+    font-size: .8rem;
+    font-weight: bold;
+    margin-left: pxToRem(20);
+    padding: pxToRem(13) pxToRem(16);
+
+    @include mediaMobile {
+      display: none;
+    }
+  }
+}
+
+.section {
+  border-bottom: 1px solid $border-color;
+}
+
+.productivity {
+  align-items: center;
+  background: url("../reference/assets/hero.svg") center / cover;
+  color: $blue1-color;
+  display: flex;
+  flex-direction: column;
+  height: pxToRem(570);
+  position: relative;
+  text-align: center;
+  width: 100%;
+
+  &__label {
+    font-size: pxToRem(10);
+    font-weight: 500;
+    margin-bottom: pxToRem(16);
+    margin-top: auto;
+    text-transform: uppercase;
+  }
+
+  &__header {
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: pxToRem(28);
+  }
+
+  &__description {
+    color: $blue5-color;
+    font-size: pxToRem(15);
+    max-width: pxToRem(500);
+
+    @include mediaMobile {
+      display: none;
+    }
+  }
+
+  &__button {
+    @include removeButtonStyles;
+    align-items: center;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 10px 50px rgba(201, 209, 231, 0.6);
+    cursor: pointer;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    margin-bottom: pxToRem(212);
+    margin-top: pxToRem(19);
+    width: 50px;
+  }
+}
+
+.customers {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: pxToRem(50) 0;
+
+  &__logo {
+    cursor: pointer;
+    fill: $gray1-color;
+    height: pxToRem(30);
+    margin: pxToRem(30);
+
+    &:hover {
+      fill: $blue3-color;
+    }
+  }
+}
+
+.plan {
+  background-color: $gray2-color;
+
+  &__main-container {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: pxToRem(776);
+    margin: 0 auto;
+    max-width: pxToRem(1100);
+    padding: 0 pxToRem(10);
+  }
+
+  &__text-container {
+    color: $blue1-color;
+    max-width: pxToRem(450);
+  }
+
+  &__label {
+    font-size: pxToRem(10);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  &__header {
+    font-size: pxToRem(36);
+    font-weight: normal;
+    margin: pxToRem(27) 0;
+  }
+
+  &__description {
+    color: $blue5-color;
+  }
+
+  &__image-container {
+    flex-grow: 1;
+    height: pxToRem(350);
+    margin-left: auto;
+    max-height: 75vw;
+    max-width: pxToRem(600);
+  }
+
+  &__image {
+    width: 100%;
+  }
+
+  &__buttons-container {
+    display: flex;
+    width: 100%;
+  }
+
+  &__video-button {
+    @include removeButtonStyles;
+    background: #4C85FF;
+    border-radius: 2px 0 0 2px;
+    box-shadow: 0 5px 15px rgba(188, 199, 255, 0.75);
+    color: white;
+    cursor: pointer;
+    font-size: pxToRem(13);
+    font-weight: bold;
+    padding: pxToRem(12) pxToRem(25);
+
+    .fas {
+      font-size: pxToRem(8);
+      margin-left: 5px;
+    }
+  }
+
+  &__features-button {
+    @include removeButtonStyles;
+    border-radius: 0 2px 2px 0;
+    border: 1px solid #D1D1E4;
+    color: #ADB4D2;
+    cursor: pointer;
+    font-size: pxToRem(13);
+    font-weight: 500;
+    padding: pxToRem(12) pxToRem(25);
+  }
+}
+
+.about {
+  background: url("../reference/assets/clouds.svg") center / contain no-repeat;
+  padding: pxToRem(100) 0;
+  text-align: center;
+  width: 100%;
+
+  &__label {
+    color: $blue1-color;
+    font-size: pxToRem(10);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  &__header {
+    color: $blue1-color;
+    font-size: pxToRem(24);
+    font-weight: 500;
+    margin: pxToRem(20) 0 pxToRem(100);
+  }
+
+  &__figures-container {
+    display: grid;
+    gap: pxToRem(100);
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0 pxToRem(10);
+
+    @include mediaMobile {
+      gap: pxToRem(100) pxToRem(20);
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__figure {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  &__figure + &__figure::before {
+    background: #DAE4FE;
+    content: '';
+    height: 1px;
+    left: -65px;
+    position: absolute;
+    top: 70%;
+    width: 30px;
+
+    @include mediaMobile {
+      display: none;
+    }
+  }
+
+  &__figure-image {
+    height: pxToRem(70);
+    width: pxToRem(70);
+  }
+
+  &__figure-header {
+    color: #4074F8;
+    font-size: pxToRem(14);
+    margin: pxToRem(24) 0;
+  }
+
+  &__figure-body {
+    color: #ADB3CB;
+    font-size: pxToRem(11);
+  }
+
+  &__buttons-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: pxToRem(50);
+    padding: 0 pxToRem(10);
+  }
+
+  &__read-more-button {
+    @include removeButtonStyles;
+    background: #FFD7D7;
+    border-radius: 2px;
+    color: #D43F3F;
+    cursor: pointer;
+    font-size: pxToRem(13);
+    font-weight: bold;
+    padding: pxToRem(12);
+    width: pxToRem(110);
+  }
+
+  &__get-started-button {
+    @include removeButtonStyles;
+    background: #D2E1FF;
+    border-radius: 2px;
+    color: #3A79FF;
+    cursor: pointer;
+    font-size: pxToRem(13);
+    font-weight: bold;
+    padding: pxToRem(12);
+    width: pxToRem(110);
+  }
+
+  &__buttons-separator {
+    align-items: center;
+    color: #ADB3CB;
+    display: flex;
+    flex-shrink: 10;
+    font-size: pxToRem(11);
+    font-weight: 600;
+    justify-content: space-evenly;
+    width: pxToRem(110);
+  }
+
+  &__buttons-separator-line {
+    background-color: #DAE4FE;
+    height: 1px;
+    margin: 0 2px;
+    width: 16px;
+  }
+}
+
+.stats {
+  display: flex;
+
+  @include mediaMobileSmall() {
+    display: block;
+  }
+
+  &__meter {
+    background: linear-gradient(208.93deg, #6888FF 12.77%, #5E80FF 73.11%);
+    color: white;
+    flex-grow: 1;
+    padding: pxToRem(40);
+    text-align: right;
+  }
+
+  &__users {
+    background: linear-gradient(130.53deg, #E9EFFF 41.56%, #E0E9FF 81.53%);
+    color: #5E80FF;
+    flex-grow: 1;
+    padding: pxToRem(40);
+  }
+
+  &__header {
+    font-size: pxToRem(48);
+    font-weight: normal;
+    margin: pxToRem(30) 0;
+  }
+
+  &__description {
+    font-size: pxToRem(18);
+  }
+}
+
+.blog {
+  background: #F5F8FF;
+  padding: pxToRem(100) pxToRem(20);
+  position: relative;
+  width: 100%;
+
+  &.hidden {
+    display: none;
+  }
+
+  &__label {
+    color: $blue1-color;
+    font-size: pxToRem(10);
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__header {
+    color: $blue1-color;
+    font-size: pxToRem(24);
+    font-weight: 500;
+    margin: pxToRem(20) 0;
+    text-align: center;
+  }
+
+  &__post-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  &__post {
+    background: white;
+    border: 1px solid #D8E3FE;
+    box-shadow: 0 15px 50px #EFF4FF;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 pxToRem(10);
+    max-width: pxToRem(1000);
+    padding: pxToRem(30);
+    width: 100%;
+
+    @include mediaMobile {
+      display: block;
+    }
+  }
+
+  &__post-image {
+    width: 45%;
+
+    @include mediaMobile {
+      width: 100%;
+    }
+
+    img {
+      display: block;
+      height: pxToRem(300);
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+
+  &__post-content {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+
+    @include mediaMobile {
+      width: 100%;
+    }
+  }
+
+  &__post-header {
+    color: #3D4F9F;
+    font-size: pxToRem(36);
+    font-weight: normal;
+    margin-bottom: pxToRem(20);
+  }
+
+  &__post-description {
+    color: #8D96BD;
+    font-size: pxToRem(14);
+    margin-bottom: auto;
+  }
+
+  &__post-read-button {
+    @include removeButtonStyles;
+    background: #D2E1FF;
+    border-radius: 2px;
+    color: #3A79FF;
+    cursor: pointer;
+    font-size: pxToRem(13);
+    font-weight: bold;
+    margin-top: pxToRem(20);
+    padding: pxToRem(12);
+    text-align: center;
+    text-decoration: none;
+    width: pxToRem(110);
+
+    @include mediaMobileSmall {
+      width: 100%;
+    }
+  }
+
+  &__arrow {
+    @include removeButtonStyles;
+    cursor: pointer;
+
+    @include mediaTablet {
+      display: none;
+    }
+
+    &.left {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: pxToRem(50);
+  }
+
+  &__indicator {
+    @include removeButtonStyles;
+    background: #D1D6E3;
+    border-radius: 50%;
+    cursor: pointer;
+    height: pxToRem(8);
+    margin: 0 pxToRem(6);
+    width: pxToRem(8);
+
+    &.selected {
+      background: $blue2-color;
+    }
+  }
+}
+
+.faq {
+  background: white;
+  padding: pxToRem(100) pxToRem(20);
+  width: 100%;
+
+  &__label {
+    color: $blue1-color;
+    font-size: pxToRem(10);
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__header {
+    color: $blue1-color;
+    font-size: pxToRem(24);
+    font-weight: 500;
+    margin: pxToRem(20) 0;
+    text-align: center;
+  }
+
+  &__questions-list {
+    margin: pxToRem(80) auto 0;
+    max-width: pxToRem(700);
+  }
+
+  &__question {
+    border-bottom: 1px solid #D8E3FE;
+    list-style: none;
+    padding: pxToRem(20) 0;
+    position: relative;
+
+    &:before {
+      background: url('reference/assets/icons/closed.svg') center / contain no-repeat;
+      content: '';
+      height: 10px;
+      left: -20px;
+      position: absolute;
+      top: 25px;
+      width: 10px;
+    }
+
+    &.open:before {
+      background: url('reference/assets/icons/open.svg') center / contain no-repeat;
+    }
+  }
+
+  &__question-header {
+    color: #8E96B7;
+    cursor: pointer;
+    font-size: pxToRem(15);
+    font-weight: 500;
+  }
+
+  &__question.open &__question-header {
+    color:#495274;
+  }
+
+  &__question-content {
+    align-items: flex-start;
+    color:#8D96BD;
+    display: none;
+    font-size: pxToRem(14);
+    justify-content: space-between;
+    padding: pxToRem(20) 0 0 pxToRem(20);
+  }
+
+  &__question.open &__question-content {
+    display: flex;
+  }
+
+  &__question-description {
+    max-width: pxToRem(400);
+  }
+
+  &__question-button {
+    background-color: #E8ECF4;
+    border-radius: 2px;
+    border: 0;
+    color: #7382A3;
+    cursor: pointer;
+    flex-grow: 1;
+    font-size: pxToRem(13);
+    margin-left: pxToRem(10);
+    max-width: pxToRem(200);
+    padding: 10px;
+  }
+}
+
+.bottom-bar {
+  background: white;
+  height: pxToRem(300);
+  padding: 0 pxToRem(20);
+  width: 100%;
+
+  &__inner-container {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    margin: auto;
+    max-width: pxToRem(1200);
+  }
+
+  &__image {
+    margin-right: pxToRem(20);
+  }
+
+  &__link-group {
+    align-items: center;
+    display: flex;
+
+    &:first-of-type {
+      margin-right: auto;
+      @include mediaMobile {
+        display: none;
+      }
+    }
+
+    &:last-of-type {
+      @include mediaTablet {
+        display: none;
+      }
+    }
+  }
+
+  &__link {
+    color: $blue4-color;
+    cursor: pointer;
+    fill: currentColor;
+    font-size: .75rem;
+    font-weight: 500;
+    padding: pxToRem(20);
+    text-shadow: 0 0 5px #E6E6E6;
+
+    &:hover {
+      color: $blue3-color;
+    }
+  }
+
+  &__button {
+    @include removeButtonStyles;
+    background-color: $blue6-color;
+    border-radius: 2px;
+    color: $blue2-color;
+    cursor: pointer;
+    font-size: .8rem;
+    font-weight: bold;
+    margin-left: pxToRem(20);
+    padding: pxToRem(13) pxToRem(16);
+
+    @include mediaMobile {
+      display: none;
+    }
+  }
 }

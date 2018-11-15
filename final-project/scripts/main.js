@@ -1,10 +1,3 @@
-import "../styles/main.scss";
-
-// testing that `const` and arrow functions transpile correctly
-const before = "Hello -world!";
-const after = before
-  .split("")
-  .filter(char => char !== "-")
-  .join("");
-console.log({ before });
-console.log({ after });
+import '../styles/main.scss';
+import './blog'
+import './faq'
